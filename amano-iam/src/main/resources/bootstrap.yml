@@ -1,0 +1,18 @@
+spring:
+  application:
+      name: amano-iam
+  profiles:
+    active: "local"
+
+---
+spring:
+  profiles: local
+
+ui-host: http://localhost:8081/
+
+---
+spring:
+  profiles: dev
+
+# ui host for embedded front-end.
+ui-host: /

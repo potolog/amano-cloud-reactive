@@ -1,0 +1,44 @@
+server:
+  port: 9000
+  servlet:
+    context-path: /
+
+---
+spring:
+  profiles: local
+#  data:
+#    mongodb:
+#      uri: mongodb://192.168.99.100:27017/test
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    statusPageUrlPath: ${server.servlet.context-path}info
+    healthCheckUrlPath: ${server.servlet.context-path}health
+    metadataMap:
+        deployment: local
+        profile: local
+
+---
+spring:
+  profiles: dev
+  data:
+    mongodb:
+      uri: mongodb://${MONGO_HOST}:27017/test
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA_HOST}:8761/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    statusPageUrlPath: ${server.servlet.context-path}info
+    healthCheckUrlPath: ${server.servlet.context-path}health
+    metadataMap:
+        deployment: dev
+        profile: dev

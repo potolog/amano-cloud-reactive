@@ -1,0 +1,13 @@
+spring:
+  application:
+      name: parking-service
+  profiles:
+    active: local
+
+---
+spring:
+  profiles: local
+
+---
+spring:
+  profiles: dev

@@ -1,0 +1,13 @@
+spring:
+  application:
+      name: amano-security
+  profiles:
+    active: local
+
+---
+spring:
+  profiles: local
+
+---
+spring:
+  profiles: dev

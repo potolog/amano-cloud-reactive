@@ -1,0 +1,40 @@
+server:
+  port: 8761
+
+spring:
+  application:
+      name: amano-eureka
+  profiles:
+    active: local
+# => spring.profiles.active 란 애는, 환경변수 SPRING_PROFILES_ACTIVE 를 줘서 동적 변환이 가능함.
+---
+spring:
+  profiles: local
+
+eureka:
+  server:
+    enableSelfPreservation: false
+    eviction-interval-timer-in-ms: 5000
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+---
+spring:
+  profiles: dev
+
+eureka:
+  server:
+    enableSelfPreservation: false
+    eviction-interval-timer-in-ms: 5000
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
